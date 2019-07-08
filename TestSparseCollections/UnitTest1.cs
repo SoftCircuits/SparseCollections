@@ -3,7 +3,6 @@
 //
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SoftCircuits.SparseCollections;
-using System;
 using System.Linq;
 
 namespace TestSparseMatrix
@@ -112,54 +111,6 @@ namespace TestSparseMatrix
             // Negative indices
             matrix[-5000, -5000] = 12345;
             Assert.AreEqual(12345, matrix[-5000, -5000]);
-        }
-
-        [TestMethod]
-        public void TestAllPossibleArrayIndices()
-        {
-            Random rand = new Random();
-            SparseArray<int> array = new SparseArray<int>();
-            for (int i = int.MinValue; i <= int.MaxValue; i++)
-            {
-                int value = rand.Next();
-                array[i] = value;
-                Assert.AreEqual(value, array[i]);
-
-                var indices = array.GetIndices().ToArray();
-                Assert.AreEqual(1, indices.Length);
-                Assert.AreEqual(i, indices[0]);
-                array.Clear();
-
-                // Prevent OutOfMemoryException
-                //if (array.Count > 1000000)
-                //    array.Clear();
-            }
-        }
-
-        [TestMethod]
-        public void TestAllPossibleMatrixIndices()
-        {
-            Random rand = new Random();
-            SparseMatrix<int> matrix = new SparseMatrix<int>();
-            for (int i = int.MinValue; i <= int.MaxValue; i++)
-            {
-                for (int j = int.MinValue; j <= int.MaxValue; j++)
-                {
-                    int value = rand.Next();
-                    matrix[i, j] = value;
-                    Assert.AreEqual(value, matrix[i, j]);
-
-                    var indices = matrix.GetIndices().ToArray();
-                    Assert.AreEqual(1, indices.Length);
-                    Assert.AreEqual(i, indices[0].Row);
-                    Assert.AreEqual(j, indices[0].Col);
-                    matrix.Clear();
-
-                }
-                // Prevent OutOfMemoryException
-                //if (matrix.Count > 1000000)
-                //    matrix.Clear();
-            }
         }
     }
 }

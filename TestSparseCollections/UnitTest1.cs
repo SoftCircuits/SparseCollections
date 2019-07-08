@@ -3,6 +3,8 @@
 //
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SoftCircuits.SparseCollections;
+using System;
+using System.Diagnostics;
 using System.Linq;
 
 namespace TestSparseMatrix
@@ -111,6 +113,64 @@ namespace TestSparseMatrix
             // Negative indices
             matrix[-5000, -5000] = 12345;
             Assert.AreEqual(12345, matrix[-5000, -5000]);
+        }
+
+        static readonly int[] EdgeIndices =
+        {
+            int.MinValue,
+            int.MinValue + 1,
+            int.MinValue + 2,
+            int.MinValue + 3,
+            int.MinValue + 4,
+            int.MinValue + 5,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            int.MaxValue - 5,
+            int.MaxValue - 4,
+            int.MaxValue - 3,
+            int.MaxValue - 2,
+            int.MaxValue - 1,
+            int.MaxValue,
+        };
+
+        [TestMethod]
+        public void TestArrayIndices()
+        {
+            Random rand = new Random();
+            SparseArray<int> array = new SparseArray<int>();
+            for (int i = 0; i < EdgeIndices.Length; i++)
+            {
+                int value = rand.Next();
+                array[EdgeIndices[i]] = value;
+                Assert.AreEqual(value, array[EdgeIndices[i]]);
+            }
+            Assert.AreEqual(EdgeIndices.Length, array.Count);
+        }
+
+        [TestMethod]
+        public void TestMatrixIndices()
+        {
+            Random rand = new Random();
+            SparseMatrix<int> matrix = new SparseMatrix<int>();
+            for (int i = 0; i < EdgeIndices.Length; i++)
+            {
+                for (int j = 0; j < EdgeIndices.Length; j++)
+                {
+                    int value = rand.Next();
+                    matrix[EdgeIndices[i], EdgeIndices[j]] = value;
+                    Assert.AreEqual(value, matrix[EdgeIndices[i], EdgeIndices[j]]);
+                }
+            }
+            Assert.AreEqual(EdgeIndices.Length * EdgeIndices.Length, matrix.Count);
         }
     }
 }

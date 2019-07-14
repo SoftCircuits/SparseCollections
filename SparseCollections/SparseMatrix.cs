@@ -15,11 +15,17 @@ namespace SoftCircuits.SparseCollections
         private Dictionary<long, T> Data;
 
         /// <summary>
+        /// The default value returned for an empty position.
+        /// </summary>
+        public T DefaultValue { get; set; }
+
+        /// <summary>
         /// Constructs a new SparseMatrix instance.
         /// </summary>
         public SparseMatrix()
         {
             Data = new Dictionary<long, T>();
+            DefaultValue = default;
         }
 
         /// <summary>
@@ -27,10 +33,11 @@ namespace SoftCircuits.SparseCollections
         /// </summary>
         /// <param name="row">Item row position.</param>
         /// <param name="col">Item column position.</param>
-        /// <returns>The item at the specified position, or default(T) if the position is empty.</returns>
+        /// <returns>The item at the specified position, or the default value if the
+        /// position is empty.</returns>
         public T this[int row, int col]
         {
-            get => Data.TryGetValue(ToKey(row, col), out T item) ? item : default;
+            get => Data.TryGetValue(ToKey(row, col), out T item) ? item : DefaultValue;
             set => Data[ToKey(row, col)] = value;
         }
 
@@ -42,10 +49,7 @@ namespace SoftCircuits.SparseCollections
         /// <summary>
         /// Clears all items from this collection.
         /// </summary>
-        public void Clear()
-        {
-            Data.Clear();
-        }
+        public void Clear() => Data.Clear();
 
         /// <summary>
         /// Removes the specified item from the collection.

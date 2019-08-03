@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SparseCollections", "SparseCollections\SparseCollections.csproj", "{06AD6ACC-92AE-4ACD-B1F3-03BE9BE7D7E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSparseCollections", "TestSparseCollections\TestSparseCollections.csproj", "{E32C8946-117C-4899-B92D-7310214D7169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SparseCollectionsTests", "TestSparseCollections\SparseCollectionsTests.csproj", "{E32C8946-117C-4899-B92D-7310214D7169}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

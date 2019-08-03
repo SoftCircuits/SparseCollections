@@ -10,15 +10,15 @@ namespace SoftCircuits.SparseCollections
         /// <summary>
         /// Internal data.
         /// </summary>
-        private Dictionary<int, T> Data;
+        private readonly Dictionary<int, T> Data;
 
         /// <summary>
-        /// The default value returned for an empty position.
+        /// Gets or sets the default value returned for empty positions.
         /// </summary>
         public T DefaultValue { get; set; }
 
         /// <summary>
-        /// Constructs a new SparseArray instance.
+        /// Constructs a new <see cref="SparseArray{T}"/> instance.
         /// </summary>
         public SparseArray()
         {
@@ -27,10 +27,11 @@ namespace SoftCircuits.SparseCollections
         }
 
         /// <summary>
-        /// Gets or sets the specified item.
+        /// Gets or sets the item at the specified index.
         /// </summary>
-        /// <param name="index">Item position.</param>
-        /// <returns>The item at the specified position, or the default value if the position is empty.</returns>
+        /// <param name="index">Item index position.</param>
+        /// <returns>The item at the specified position, or the default value if the
+        /// position is empty.</returns>
         public T this[int index]
         {
             get => Data.TryGetValue(index, out T item) ? item : DefaultValue;
@@ -50,7 +51,7 @@ namespace SoftCircuits.SparseCollections
         /// <summary>
         /// Removes the specified item from the collection.
         /// </summary>
-        /// <param name="index">Item position.</param>
+        /// <param name="index">Item index position.</param>
         /// <returns>True if successful, false if the specified item didn't exist.</returns>
         public bool RemoveAt(int index) => Data.Remove(index);
 
@@ -61,9 +62,9 @@ namespace SoftCircuits.SparseCollections
         public IEnumerable<T> GetItems() => Data.Values;
 
         /// <summary>
-        /// Returns all the indices that refer to non-empty items.
+        /// Returns all the array indexes that refer to non-empty items.
         /// </summary>
-        /// <returns>All the indices that refer to non-empty items.</returns>
-        public IEnumerable<int> GetIndices() => Data.Keys;
+        /// <returns>All the array indexes that refer to non-empty items.</returns>
+        public IEnumerable<int> GetIndexes() => Data.Keys;
     }
 }

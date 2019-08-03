@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2019 Jonathan Wood (www.softcircuits.com)
 // Licensed under the MIT license.
 //
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,15 +11,15 @@ namespace SoftCircuits.SparseCollections
         /// <summary>
         /// Internal data.
         /// </summary>
-        private Dictionary<long, T> Data;
+        private readonly Dictionary<long, T> Data;
 
         /// <summary>
-        /// The default value returned for an empty position.
+        /// Gets or sets the default value returned for empty positions.
         /// </summary>
         public T DefaultValue { get; set; }
 
         /// <summary>
-        /// Constructs a new SparseMatrix instance.
+        /// Constructs a new <see cref="SparseMatrix{T}"/> instance.
         /// </summary>
         public SparseMatrix()
         {
@@ -29,16 +28,16 @@ namespace SoftCircuits.SparseCollections
         }
 
         /// <summary>
-        /// Gets or sets the specified item.
+        /// Gets or sets the item at the specified row and column.
         /// </summary>
         /// <param name="row">Item row position.</param>
-        /// <param name="col">Item column position.</param>
+        /// <param name="column">Item column position.</param>
         /// <returns>The item at the specified position, or the default value if the
         /// position is empty.</returns>
-        public T this[int row, int col]
+        public T this[int row, int column]
         {
-            get => Data.TryGetValue(ToKey(row, col), out T item) ? item : DefaultValue;
-            set => Data[ToKey(row, col)] = value;
+            get => Data.TryGetValue(MatrixPosition.ToKey(row, column), out T item) ? item : DefaultValue;
+            set => Data[MatrixPosition.ToKey(row, column)] = value;
         }
 
         /// <summary>
@@ -55,9 +54,9 @@ namespace SoftCircuits.SparseCollections
         /// Removes the specified item from the collection.
         /// </summary>
         /// <param name="row">Item row position.</param>
-        /// <param name="col">Item column position.</param>
+        /// <param name="column">Item column position.</param>
         /// <returns>True if successful, false if the specified item didn't exist.</returns>
-        public bool RemoveAt(int row, int col) => Data.Remove(ToKey(row, col));
+        public bool RemoveAt(int row, int column) => Data.Remove(MatrixPosition.ToKey(row, column));
 
         /// <summary>
         /// Returns all items from this collection.
@@ -66,18 +65,9 @@ namespace SoftCircuits.SparseCollections
         public IEnumerable<T> GetItems() => Data.Values;
 
         /// <summary>
-        /// Returns all the row, column indices that refer to non-empty items.
+        /// Returns all the matrix row, column positions that refer to non-empty items.
         /// </summary>
-        /// <returns>All the row, column indices that refer to non-empty items.</returns>
-        public IEnumerable<(int Row, int Col)> GetIndices() => Data.Keys.Select(k => (ToRow(k), ToColumn(k)));
-
-        #region Helper methods
-
-        private long ToKey(Int32 row, Int32 col) => ((Int64)row << 32) | ((Int64)col & 0xffffffff);
-        private int ToRow(Int64 key) => (Int32)(key >> 32);
-        private int ToColumn(Int64 key) => (Int32)(key & 0xffffffff);
-
-        #endregion
-
+        /// <returns>All the matrix row, column positions that refer to non-empty items.</returns>
+        public IEnumerable<MatrixPosition> GetPositions() => Data.Keys.Select(k => new MatrixPosition(k));
     }
 }

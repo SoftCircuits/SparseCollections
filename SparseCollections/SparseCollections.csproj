@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -8,14 +8,15 @@
     <Authors>Jonathan Wood</Authors>
     <Company>SoftCircuits</Company>
     <Description>The SparseCollections library provides the SparseArray&lt;T&gt; and SparseMatrix&lt;T&gt; collection classes. The array class allow statements such as "array[1000000] = 5" or "array[-1000000] = 6" without having to create a large array. The matrix class does the same thing using a two-dimensional-array metaphor.</Description>
-    <Copyright>Copyright © SoftCircuits</Copyright>
+    <Copyright>Copyright © 2019 SoftCircuits</Copyright>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/SoftCircuits/SparseCollections</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SoftCircuits/SparseCollections</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>sparse-array sparse-matrix sparse array matrix</PackageTags>
-    <PackageReleaseNotes>Initial version</PackageReleaseNotes>
+    <PackageReleaseNotes>Created MatrixPosition class (returned by SparseMatrix&lt;T&gt;.GetIndices() method); Reworked unit tests; Improved documentation comments; Renamed SparseArray&lt;T&gt;.GetIndices() to GetIndexes(); Renamed SparseMatrix&lt;T&gt;.GetIndices() to GetPositions();</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

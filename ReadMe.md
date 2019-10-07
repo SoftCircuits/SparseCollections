@@ -8,9 +8,7 @@ Install-Package SoftCircuits.SparseCollections
 
 ## Overview
 
-The SparseCollections library provides the `SparseArray<T>` and `SparseMatrix<T>` collection classes. The array class allow statements such as `array[1000000] = 5` or `array[-1000000] = 6` without having to create a large array. The matrix class does the same thing using a two-dimensional-array metaphor.
-
-These are a very lightweight and simple classes.
+The SparseCollections library includes two lightweight collection classes, `SparseArray<T>` and `SparseMatrix<T>`. The array class allow statements like `array[1000000] = 5` and `array[-1000000] = 6` without having to allocate a large array. The matrix class does the same thing using a two-dimensional-array metaphor.
 
 ## Examples
 

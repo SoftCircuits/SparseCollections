@@ -21,6 +21,7 @@ SparseArray<int> array = new SparseArray<int>();
 array[10000] = 4;
 array[-100000] = 5;
 
+// Confirm values
 Debug.Assert(array[10000] == 4);
 Debug.Assert(array[-100000] == 5);
 ```
@@ -34,6 +35,7 @@ SparseMatrix<int> matrix = new SparseMatrix<int>();
 matrix[10000, -10000] = 4;
 matrix[-100000, 20000] = 5;
 
+// Confirm values
 Debug.Assert(matrix[10000, -10000] == 4);
 Debug.Assert(matrix[-100000, 20000] == 5);
 ```

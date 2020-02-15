@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Jonathan Wood (www.softcircuits.com)
+// Copyright (c) 2019-2020 Jonathan Wood (www.softcircuits.com)
 // Licensed under the MIT license.
 //
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -61,8 +61,6 @@ namespace SparseCollectionsTests
         public void TestMatrix()
         {
             SparseMatrix<int> matrix = new SparseMatrix<int>();
-            //List<MatrixPosition> indexes = new List<MatrixPosition>();
-            //List<int> values = new List<int>();
 
             // Populate
             for (int i = 0; i < Indexes.Count; i++)
@@ -70,8 +68,6 @@ namespace SparseCollectionsTests
                 for (int j = 0; j < Indexes.Count; j++)
                 {
                     matrix[Indexes[i], Indexes[j]] = Indexes[i] + j;
-                    //indexes.Add(Indexes[i] + j);
-                    //values.Add()
                 }
             }
 

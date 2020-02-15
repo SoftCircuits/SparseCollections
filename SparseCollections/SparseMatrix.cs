@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 Jonathan Wood (www.softcircuits.com)
+﻿// Copyright (c) 2019-2020 Jonathan Wood (www.softcircuits.com)
 // Licensed under the MIT license.
 //
 using System.Collections.Generic;
@@ -21,10 +21,12 @@ namespace SoftCircuits.SparseCollections
         /// <summary>
         /// Constructs a new <see cref="SparseMatrix{T}"/> instance.
         /// </summary>
-        public SparseMatrix()
+        /// <param name="defaultValue">Specifies the value returned for array
+        /// positions that have no value.</param>
+        public SparseMatrix(T defaultValue = default)
         {
             Data = new Dictionary<long, T>();
-            DefaultValue = default;
+            DefaultValue = defaultValue;
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 Jonathan Wood (www.softcircuits.com)
+﻿// Copyright (c) 2019-2020 Jonathan Wood (www.softcircuits.com)
 // Licensed under the MIT license.
 //
 using System.Collections.Generic;
@@ -20,10 +20,12 @@ namespace SoftCircuits.SparseCollections
         /// <summary>
         /// Constructs a new <see cref="SparseArray{T}"/> instance.
         /// </summary>
-        public SparseArray()
+        /// <param name="defaultValue">Specifies the value returned for array
+        /// positions that have no value.</param>
+        public SparseArray(T defaultValue = default)
         {
             Data = new Dictionary<int, T>();
-            DefaultValue = default;
+            DefaultValue = defaultValue;
         }
 
         /// <summary>

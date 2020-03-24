@@ -2,7 +2,9 @@
 // Licensed under the MIT license.
 //
 using System;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("SparseCollectionsTests")]
 namespace SoftCircuits.SparseCollections
 {
     public class MatrixPosition
@@ -10,19 +12,21 @@ namespace SoftCircuits.SparseCollections
         /// <summary>
         /// Gets or sets the matrix row position.
         /// </summary>
-        public int Row { get; set; }
+        public int Row { get; internal set; }
 
         /// <summary>
         /// Gets or sets the matrix column position.
         /// </summary>
-        public int Column { get; set; }
+        public int Column { get; internal set; }
 
+        // Internal constructor
         internal MatrixPosition(int row, int column)
         {
             Row = row;
             Column = column;
         }
 
+        // Internal constructor
         internal MatrixPosition(long key)
         {
             Row = ToRow(key);
@@ -30,18 +34,18 @@ namespace SoftCircuits.SparseCollections
         }
 
         /// <summary>
-        /// Converts a matrix row and column to an internal key.
+        /// Converts a matrix row and column to an internal hash key.
         /// </summary>
-        internal static long ToKey(Int32 row, Int32 col) => ((Int64)row << 32) | ((Int64)col & 0xffffffff);
+        internal static long ToKey(Int32 row, Int32 col) => ((Int64)row << 32) | (col & 0xffffffff);
 
         /// <summary>
-        /// Extracts a matrix row value from an internal key.
+        /// Extracts a matrix row value from an internal hash key.
         /// </summary>
         internal static int ToRow(Int64 key) => (Int32)(key >> 32);
 
         /// <summary>
-        /// Extracts a matrix column value from an internal key.
+        /// Extracts a matrix column value from an internal hash key.
         /// </summary>
-        internal static int ToColumn(Int64 key) => (Int32)(key & 0xffffffff);
+        internal static int ToColumn(Int64 key) => (Int32)key;
     }
 }

@@ -120,5 +120,35 @@ namespace SparseCollectionsTests
             Assert.AreEqual(1, items.Count());
             Assert.AreEqual(5555, items.First());
         }
+
+        [TestMethod]
+        public void TestMatrixPositions()
+        {
+            long key;
+
+            // Small values
+            for (int row = -50; row < 50; row++)
+            {
+                for (int col = -50; col < 50; col++)
+                {
+                    key = MatrixPosition.ToKey(row, col);
+                    Assert.AreEqual(row, MatrixPosition.ToRow(key));
+                    Assert.AreEqual(col, MatrixPosition.ToColumn(key));
+                }
+            }
+            // Large values
+            for (long row = int.MinValue; row < int.MaxValue; row += 2000000)
+            {
+                for (long col = int.MinValue; col < int.MaxValue; col += 2000000)
+                {
+                    key = MatrixPosition.ToKey((int)row, (int)col);
+                    Assert.AreEqual(row, MatrixPosition.ToRow(key));
+                    Assert.AreEqual(col, MatrixPosition.ToColumn(key));
+                }
+            }
+            key = MatrixPosition.ToKey(int.MaxValue, int.MaxValue);
+            Assert.AreEqual(int.MaxValue, MatrixPosition.ToRow(key));
+            Assert.AreEqual(int.MaxValue, MatrixPosition.ToColumn(key));
+        }
     }
 }

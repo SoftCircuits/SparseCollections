@@ -14,9 +14,9 @@
     <RepositoryUrl>https://github.com/SoftCircuits/SparseCollections</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>sparse-array sparse-matrix sparse array matrix collections .net</PackageTags>
-    <PackageReleaseNotes>Added defaultValue argument to SparseArray and SparseMatrix constructors; minor tweaks; added icon file.</PackageReleaseNotes>
+    <PackageReleaseNotes>Minor tweaks to code and unit tests.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <PackageIcon>Logo_64x64.png</PackageIcon>
     <PackageIconUrl />
   </PropertyGroup>

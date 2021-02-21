@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019-2020 Jonathan Wood (www.softcircuits.com)
+﻿// Copyright (c) 2019-2021 Jonathan Wood (www.softcircuits.com)
 // Licensed under the MIT license.
 //
 using System.Collections.Generic;
@@ -10,12 +10,12 @@ namespace SoftCircuits.SparseCollections
         /// <summary>
         /// Internal data.
         /// </summary>
-        private readonly Dictionary<int, T> Data;
+        private readonly Dictionary<int, T?> Data;
 
         /// <summary>
         /// Gets or sets the default value returned for empty positions.
         /// </summary>
-        public T DefaultValue { get; set; }
+        public T? DefaultValue { get; set; }
 
         /// <summary>
         /// Constructs a new <see cref="SparseArray{T}"/> instance.
@@ -24,7 +24,7 @@ namespace SoftCircuits.SparseCollections
         /// positions that have no value.</param>
         public SparseArray(T defaultValue = default)
         {
-            Data = new Dictionary<int, T>();
+            Data = new Dictionary<int, T?>();
             DefaultValue = defaultValue;
         }
 
@@ -34,7 +34,7 @@ namespace SoftCircuits.SparseCollections
         /// <param name="index">Item index position.</param>
         /// <returns>The item at the specified position, or the default value if the
         /// position is empty.</returns>
-        public T this[int index]
+        public T? this[int index]
         {
             get => Data.TryGetValue(index, out T item) ? item : DefaultValue;
             set => Data[index] = value;
@@ -61,7 +61,7 @@ namespace SoftCircuits.SparseCollections
         /// Returns all items from this collection.
         /// </summary>
         /// <returns>All items from this collection.</returns>
-        public IEnumerable<T> GetItems() => Data.Values;
+        public IEnumerable<T?> GetItems() => Data.Values;
 
         /// <summary>
         /// Returns all the array indexes that refer to non-empty items.

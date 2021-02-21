@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019-2020 Jonathan Wood (www.softcircuits.com)
+﻿// Copyright (c) 2019-2021 Jonathan Wood (www.softcircuits.com)
 // Licensed under the MIT license.
 //
 using System;
@@ -12,12 +12,12 @@ namespace SoftCircuits.SparseCollections
         /// <summary>
         /// Internal data.
         /// </summary>
-        private readonly Dictionary<Int64, T> Data;
+        private readonly Dictionary<Int64, T?> Data;
 
         /// <summary>
         /// Gets or sets the default value returned for empty positions.
         /// </summary>
-        public T DefaultValue { get; set; }
+        public T? DefaultValue { get; set; }
 
         /// <summary>
         /// Constructs a new <see cref="SparseMatrix{T}"/> instance.
@@ -26,7 +26,7 @@ namespace SoftCircuits.SparseCollections
         /// positions that have no value.</param>
         public SparseMatrix(T defaultValue = default)
         {
-            Data = new Dictionary<Int64, T>();
+            Data = new Dictionary<Int64, T?>();
             DefaultValue = defaultValue;
         }
 
@@ -37,7 +37,7 @@ namespace SoftCircuits.SparseCollections
         /// <param name="column">Item column position.</param>
         /// <returns>The item at the specified position, or the default value if the
         /// position is empty.</returns>
-        public T this[int row, int column]
+        public T? this[int row, int column]
         {
             get => Data.TryGetValue(MatrixPosition.ToKey(row, column), out T item) ? item : DefaultValue;
             set => Data[MatrixPosition.ToKey(row, column)] = value;
@@ -65,7 +65,7 @@ namespace SoftCircuits.SparseCollections
         /// Returns all items from this collection.
         /// </summary>
         /// <returns>All items from this collection.</returns>
-        public IEnumerable<T> GetItems() => Data.Values;
+        public IEnumerable<T?> GetItems() => Data.Values;
 
         /// <summary>
         /// Returns all the matrix row, column positions that refer to non-empty items.

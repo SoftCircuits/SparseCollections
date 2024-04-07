@@ -11,8 +11,8 @@ namespace SparseCollectionsTests
     [TestClass]
     public class SparseCollectionsTests
     {
-        static readonly List<int> Indexes = new List<int>();
-        static readonly List<int> UnusedIndexes = new List<int>();
+        static readonly List<int> Indexes = [];
+        static readonly List<int> UnusedIndexes = [];
 
         static SparseCollectionsTests()
         {
@@ -34,7 +34,7 @@ namespace SparseCollectionsTests
         [TestMethod]
         public void TestArray()
         {
-            SparseArray<int> array = new SparseArray<int>();
+            SparseArray<int> array = new();
 
             // Populate
             for (int i = 0; i < Indexes.Count; i++)
@@ -60,7 +60,7 @@ namespace SparseCollectionsTests
         [TestMethod]
         public void TestMatrix()
         {
-            SparseMatrix<int> matrix = new SparseMatrix<int>();
+            SparseMatrix<int> matrix = new();
 
             // Populate
             for (int i = 0; i < Indexes.Count; i++)
@@ -97,7 +97,7 @@ namespace SparseCollectionsTests
         [TestMethod]
         public void TestDuplicatesNoError()
         {
-            SparseArray<int> array = new SparseArray<int>();
+            SparseArray<int> array = new();
             for (int i = 0; i < 10; i++)
                 array[500] = 5555;
             Assert.AreEqual(1, array.Count);
@@ -108,7 +108,7 @@ namespace SparseCollectionsTests
             Assert.AreEqual(1, items.Count());
             Assert.AreEqual(5555, items.First());
 
-            SparseMatrix<int> matrix = new SparseMatrix<int>();
+            SparseMatrix<int> matrix = new();
             for (int i = 0; i < 10; i++)
                 matrix[500, 500] = 5555;
             Assert.AreEqual(1, matrix.Count);

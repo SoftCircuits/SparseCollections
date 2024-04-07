@@ -1,32 +1,27 @@
-﻿// Copyright (c) 2019-2021 Jonathan Wood (www.softcircuits.com)
+﻿// Copyright (c) 2019-2024 Jonathan Wood (www.softcircuits.com)
 // Licensed under the MIT license.
 //
 using System.Collections.Generic;
 
 namespace SoftCircuits.SparseCollections
 {
-    public class SparseArray<T>
+    /// <summary>
+    /// Sparse collection that behaves like a one-dimensional array.
+    /// </summary>
+    /// <typeparam name="T">Array type.</typeparam>
+    /// <param name="defaultValue">Specifies the value returned for array
+    /// positions that have no value.</param>
+    public class SparseArray<T>(T? defaultValue = default)
     {
         /// <summary>
         /// Internal data.
         /// </summary>
-        private readonly Dictionary<int, T?> Data;
+        private readonly Dictionary<int, T?> Data = [];
 
         /// <summary>
         /// Gets or sets the default value returned for empty positions.
         /// </summary>
-        public T? DefaultValue { get; set; }
-
-        /// <summary>
-        /// Constructs a new <see cref="SparseArray{T}"/> instance.
-        /// </summary>
-        /// <param name="defaultValue">Specifies the value returned for array
-        /// positions that have no value.</param>
-        public SparseArray(T defaultValue = default)
-        {
-            Data = new Dictionary<int, T?>();
-            DefaultValue = defaultValue;
-        }
+        public T? DefaultValue { get; set; } = defaultValue;
 
         /// <summary>
         /// Gets or sets the item at the specified index.
@@ -36,7 +31,7 @@ namespace SoftCircuits.SparseCollections
         /// position is empty.</returns>
         public T? this[int index]
         {
-            get => Data.TryGetValue(index, out T item) ? item : DefaultValue;
+            get => Data.TryGetValue(index, out T? item) ? item : DefaultValue;
             set => Data[index] = value;
         }
 

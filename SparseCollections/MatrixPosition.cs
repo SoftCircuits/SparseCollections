@@ -7,6 +7,9 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("SparseCollectionsTests")]
 namespace SoftCircuits.SparseCollections
 {
+    /// <summary>
+    /// Represents a position within a <see cref="SparseMatrix{T}"/> collection.
+    /// </summary>
     public class MatrixPosition
     {
         /// <summary>

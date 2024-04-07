@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net7.0;net6.0;netstandard2.0</TargetFrameworks>
     <Nullable>annotations</Nullable>
-    <Nullable Condition="'$(TargetFramework)' == 'net5.0'">enable</Nullable>
-    <LangVersion>9.0</LangVersion>
+    <Nullable Condition="'$(TargetFramework)' != 'netstandard2.0'">enable</Nullable>
+    <LangVersion>default</LangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageId>SoftCircuits.SparseCollections</PackageId>
     <Authors>Jonathan Wood</Authors>
@@ -13,17 +14,18 @@
     <Description>The SparseCollections library provides the SparseArray&lt;T&gt; and SparseMatrix&lt;T&gt; collection classes. The array class allow statements such as "array[1000000] = 5" or "array[-1000000] = 6" without having to create a large array. The matrix class does the same thing using a two-dimensional-array metaphor.
 
 Now targets either .NET Standard 2.0 or .NET 5.0, and includes support for nullable reference types.</Description>
-    <Copyright>Copyright © 2019-2021 SoftCircuits</Copyright>
+    <Copyright>Copyright © 2019-2024 SoftCircuits</Copyright>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/SoftCircuits/SparseCollections</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SoftCircuits/SparseCollections</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>sparse-array sparse-matrix sparse array matrix collections .net</PackageTags>
-    <PackageReleaseNotes>Now targets either .NET Standard 2.0 or .NET 5.0; Added support for nullable reference types.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added direct support for .NET 8, .NET 7 and .NET 6; Removed direct support for now deprecated .NET 5; miscellaneous tweaks.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Version>2.0.0</Version>
+    <Version>2.1.0</Version>
     <PackageIcon>Logo_64x64.png</PackageIcon>
     <PackageIconUrl />
+    <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +36,10 @@ Now targets either .NET Standard 2.0 or .NET 5.0, and includes support for nulla
     <None Include="..\Logo_64x64.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\ReadMe.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

@@ -7,28 +7,23 @@ using System.Linq;
 
 namespace SoftCircuits.SparseCollections
 {
-    public class SparseMatrix<T>
+    /// <summary>
+    /// Sparse collection that behaves like a two-dimensional array.
+    /// </summary>
+    /// <typeparam name="T">Array type.</typeparam>
+    /// <param name="defaultValue">Specifies the value returned for matrix
+    /// positions that have no value.</param>
+    public class SparseMatrix<T>(T? defaultValue = default)
     {
         /// <summary>
         /// Internal data.
         /// </summary>
-        private readonly Dictionary<Int64, T?> Data;
+        private readonly Dictionary<Int64, T?> Data = [];
 
         /// <summary>
         /// Gets or sets the default value returned for empty positions.
         /// </summary>
-        public T? DefaultValue { get; set; }
-
-        /// <summary>
-        /// Constructs a new <see cref="SparseMatrix{T}"/> instance.
-        /// </summary>
-        /// <param name="defaultValue">Specifies the value returned for matrix
-        /// positions that have no value.</param>
-        public SparseMatrix(T defaultValue = default)
-        {
-            Data = new Dictionary<Int64, T?>();
-            DefaultValue = defaultValue;
-        }
+        public T? DefaultValue { get; set; } = defaultValue;
 
         /// <summary>
         /// Gets or sets the item at the specified row and column.
@@ -39,7 +34,7 @@ namespace SoftCircuits.SparseCollections
         /// position is empty.</returns>
         public T? this[int row, int column]
         {
-            get => Data.TryGetValue(MatrixPosition.ToKey(row, column), out T item) ? item : DefaultValue;
+            get => Data.TryGetValue(MatrixPosition.ToKey(row, column), out T? item) ? item : DefaultValue;
             set => Data[MatrixPosition.ToKey(row, column)] = value;
         }
 

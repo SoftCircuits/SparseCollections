@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019-2024 Jonathan Wood (www.softcircuits.com)
+﻿// Copyright (c) 2019-2025 Jonathan Wood (www.softcircuits.com)
 // Licensed under the MIT license.
 //
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SoftCircuits.SparseCollections
 {
     /// <summary>
-    /// Sparse collection that behaves like a one-dimensional array.
+    /// Represents a sparse collection with an array interface.
     /// </summary>
     /// <typeparam name="T">Array type.</typeparam>
     /// <param name="defaultValue">Specifies the value returned for array
@@ -14,14 +14,14 @@ namespace SoftCircuits.SparseCollections
     public class SparseArray<T>(T? defaultValue = default)
     {
         /// <summary>
-        /// Internal data.
-        /// </summary>
-        private readonly Dictionary<int, T?> Data = [];
-
-        /// <summary>
         /// Gets or sets the default value returned for empty positions.
         /// </summary>
         public T? DefaultValue { get; set; } = defaultValue;
+
+        /// <summary>
+        /// Internal data.
+        /// </summary>
+        private readonly Dictionary<int, T?> Data = [];
 
         /// <summary>
         /// Gets or sets the item at the specified index.

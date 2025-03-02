@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019-2021 Jonathan Wood (www.softcircuits.com)
+﻿// Copyright (c) 2019-2025 Jonathan Wood (www.softcircuits.com)
 // Licensed under the MIT license.
 //
 using System;
@@ -36,6 +36,8 @@ namespace SoftCircuits.SparseCollections
             Column = ToColumn(key);
         }
 
+        #region Static Methods
+
         /// <summary>
         /// Converts a matrix row and column to an internal hash key.
         /// </summary>
@@ -50,5 +52,8 @@ namespace SoftCircuits.SparseCollections
         /// Extracts a matrix column value from an internal hash key.
         /// </summary>
         internal static Int32 ToColumn(Int64 key) => (Int32)key;
+
+        #endregion
+
     }
 }

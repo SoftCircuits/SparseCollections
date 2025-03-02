@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2021 Jonathan Wood (www.softcircuits.com)
+// Copyright (c) 2019-2025 Jonathan Wood (www.softcircuits.com)
 // Licensed under the MIT license.
 //
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -66,9 +66,7 @@ namespace SparseCollectionsTests
             for (int i = 0; i < Indexes.Count; i++)
             {
                 for (int j = 0; j < Indexes.Count; j++)
-                {
                     matrix[Indexes[i], Indexes[j]] = Indexes[i] + j;
-                }
             }
 
             // Test values
@@ -136,6 +134,7 @@ namespace SparseCollectionsTests
                     Assert.AreEqual(col, MatrixPosition.ToColumn(key));
                 }
             }
+
             // Large values
             for (long row = int.MinValue; row < int.MaxValue; row += 2000000)
             {
@@ -146,6 +145,7 @@ namespace SparseCollectionsTests
                     Assert.AreEqual(col, MatrixPosition.ToColumn(key));
                 }
             }
+
             key = MatrixPosition.ToKey(int.MaxValue, int.MaxValue);
             Assert.AreEqual(int.MaxValue, MatrixPosition.ToRow(key));
             Assert.AreEqual(int.MaxValue, MatrixPosition.ToColumn(key));
